@@ -32,6 +32,26 @@ namespace ProjectDew
 			return direction * Vector3.Dot(value, direction);
 		}
 
+		public static int ToInt(this LayerMask layerMask)
+		{
+			int binary = layerMask.value;
+
+			if (binary == 0)
+			{
+				return binary;
+			}
+
+			int integer = -1;
+
+			while(binary > 0)
+			{
+				binary = binary >> 1;
+				integer++;
+			}
+
+			return integer;
+		}
+
 		public static Vector3 RemoveDot(this Vector3 value, Vector3 direction)
 		{
             direction.Normalize();
