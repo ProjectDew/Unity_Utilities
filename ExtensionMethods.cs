@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace ProjectDew
@@ -65,6 +66,12 @@ namespace ProjectDew
 				list[i] = assignValue.Invoke (i) ?? default;
 			}
 		}
+
+		public static T[] GetDeepCopy<T>(this T[] array) => array.Select(e => e).ToArray();
+
+		public static IList<T> GetDeepCopy<T>(this IList<T> list) => list.Select(e => e).ToList();
+
+		public static IEnumerable<T> GetDeepCopy<T>(this IEnumerable<T> enumerable) => enumerable.Select(e => e);
 
 		public static void AssignValues<T>(this IList<IList<T>> list, Func<int, IList<T>> assignRow, Func<int, int, T> assignColumn)
 		{
